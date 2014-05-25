@@ -189,7 +189,9 @@
             // also strip any margin and padding from el
             el.css({
                 width: slider.settings.mode == 'horizontal' ? (slider.children.length * 100 + 215) + '%' : 'auto',
-                position: 'relative'
+                position: 'relative',
+		margin: 0,
+		padding: 0
             });
             // if using CSS, add the easing property
             if(slider.usingCSS && slider.settings.easing){
@@ -795,8 +797,8 @@
                 }else if(slider.active.index == slider.children.length - 1){
                     position = slider.children.eq(slider.children.length - 1).position();
                 }
-                if (slider.settings.mode == 'horizontal') { setPositionProperty(-position.left, 'reset', 0);; }
-                else if (slider.settings.mode == 'vertical') { setPositionProperty(-position.top, 'reset', 0);; }
+                if (slider.settings.mode == 'horizontal' && position.left) { setPositionProperty(-position.left, 'reset', 0);; }
+                else if (slider.settings.mode == 'vertical' && position.top) { setPositionProperty(-position.top, 'reset', 0);; }
             }
             // declare that the transition is complete
             slider.working = false;
